@@ -1,9 +1,19 @@
 import os
+import sys
 from datetime import datetime
 from PIL import Image
 from PIL.ExifTags import TAGS
 
-folder = r"C:\Users\wyyov\Desktop\photos"
+if len(sys.argv) < 2:
+    print("用法: python rename_photos.py <照片文件夹路径>")
+    print("示例: python rename_photos.py ./photos")
+    sys.exit(1)
+
+folder = sys.argv[1]
+
+if not os.path.isdir(folder):
+    print(f"错误: 文件夹不存在: {folder}")
+    sys.exit(1)
 
 files = [f for f in os.listdir(folder) if f.lower().endswith(('.jpg', '.jpeg', '.png'))]
 

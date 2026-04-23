@@ -1,7 +1,13 @@
 import sys
+import os
 import requests
 
-API_KEY = "98cfd8742e0de147bf674fdb295c85ec"
+API_KEY = os.getenv("OPENWEATHER_API_KEY")
+
+if not API_KEY:
+    print("错误: 请设置环境变量 OPENWEATHER_API_KEY")
+    print("示例: export OPENWEATHER_API_KEY=your_api_key_here")
+    sys.exit(1)
 
 if len(sys.argv) < 2:
     print("用法：python weather.py 城市名")
